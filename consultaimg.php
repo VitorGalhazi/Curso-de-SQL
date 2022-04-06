@@ -16,10 +16,7 @@
     p { 
         color: blue;
     }
-    img {
-        width: 20px;
-        height: 20px;
-    }
+
     
 </style>
 
@@ -35,7 +32,7 @@
     
     <fieldset>  
         <legend><b>Consultar livros</b></legend>
-    <p>Formulário de Consulta: <input type="number" name="nomea"></p>
+    <p>Formulário de Consulta: <input type="number" name="imagem"></p>
 
     <p>
         <input type="submit" name="procurar" value="Procurar"> 
@@ -48,19 +45,19 @@
 <?php 
     if (isset($_POST["procurar"])){
         $conexao=mysqli_Connect("localhost", "root","","2tib");
-        $nomea=$_POST['nomea'];
-        //colocar a varável do lado esquerdo do igual
-        $SQL="SELECT * FROM amigos where nome='$nomea'";
+        $img1=$_POST['imagem'];
+        $SQL="SELECT * FROM imagens where idimagem='$img1'";
         $result=mysqli_query($conexao,$SQL);
         while($Linha=mysqli_Fetch_array($result)){
-            //colocar variável dentro da chave
-            echo "nome do amigo: ".$Linha['nome']."<br>";
-            echo "endereço do amigo: ".$Linha['endereco']."<br>";
-            echo "código do amigo: ".$Linha['codigo']."<br>";
-            echo "celular do amigo: ".$Linha['celula']."<br>";
-            echo "apelido do amigo: ".$Linha['apelido']."<br>";
+            echo "imagem: ".$Linha['idimagem']."<br>";
+            echo $Linha['endereco']."<br>";
+            echo $Linha['descricao']."<br>";
+            echo "<img  src='imagem/".$Linha['endereco']."'>";
+
         } 
+
     }
+    
  
     
 ?>
